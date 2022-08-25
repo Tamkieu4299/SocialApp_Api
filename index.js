@@ -10,9 +10,11 @@ const conversationRoute = require("./routes/conversation");
 const messageRoute = require("./routes/message");
 const multer = require("multer");
 const path = require("path");
+const cors = require('cors');
 
 // app
 const app = express();
+app.use(cors())
 dotenv.config();
 
 // database
