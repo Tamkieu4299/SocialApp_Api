@@ -10,9 +10,10 @@ const conversationRoute = require("./routes/conversation");
 const messageRoute = require("./routes/message");
 const multer = require("multer");
 const path = require("path");
-
+const cors = require("cors");
 // app
 const app = express();
+app.use(cors());
 dotenv.config();
 
 // database
@@ -21,10 +22,12 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () => {
 });
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
+
 // middleware
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+
 
 // upload file post
 const storage = multer.diskStorage({
